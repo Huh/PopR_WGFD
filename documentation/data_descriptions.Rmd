@@ -1,0 +1,93 @@
+---
+title: ""
+author: "Josh Nowak & Paul Lukacs"
+output: 
+  html_document:
+    theme: flatly
+---
+<center>
+  <img src = "C:/Users/josh.nowak/Google Drive/Speedgoat/Bison_AZ/SG_Horizontal_Transparent_RGB.png">
+</center>
+
+## Data Formats
+
+This document is to meant to provide a thorough overview of the data formats required by PopR.  It is important to follow the conventions described in this document as it will ease implementation and help avoid errors later.  The document begins with a short table of fake data and then proceeds to describe each column's purpose and the types of entries that are allowed.  
+
+***
+
+### Example Data
+
+```{r echo = FALSE, eval = TRUE, warning = FALSE, message = FALSE}
+
+require(DT)
+require(readr)
+require(dplyr)
+
+eg_dat <- read_csv(
+  "C:/Users/josh.nowak/Documents/GitHub/PopR_WGFD/data_templates/example_data.csv",
+  col_types = c("icccccdd"))
+
+datatable(eg_dat,
+  rownames = F,
+  style = "bootstrap",
+  options = list(
+      paging = F,
+      info = F,
+      searching = F
+    )
+  )
+
+```
+
+***
+
+### Column definitions
+
+- Year
+    + Year should be entered as a 4-digit integer.  The value should reflect when the data were collected and the biological year of interest.  Typically we define a biological year relative to harvest or data collection activities, but this will need to be defined during the workshop.
+- Species
+    + Species should be entered as text.  The only possible entry is Mule Deer, written exactly as it appears here.  Other species with definitions include White-tailed Deer, Elk, Mountain Lion, Sage Grouse, Bison, Bobcat and Black Bear.
+- DAU
+    + Data analysis unit, is a text description of the geographic area.  These unit might also be called herd units as they are intended to describe a biological population that can be reasonably assumed closed to movement.  The names of the DAUs will need to be defined in the future, but for the moment a single name of your choosing for each herd will suffice.
+- Sex
+    + For those data types that refer to a specific sex (e.g. survival) this column is used to specify the sex to which the estimate refers.  The only possible options for this column are F, M or NA.  Blanks entries will cause errors.
+- Age
+    + The age of the animals to which an estimate refers.  The potential entries for this column are Y, J, S or A.  Where Y stands for young of year, J refers to juveniles, S for subadults and A for Adults.  The exact ages of these categories are well established for most species and in the case of Mule Deer I would suggest using Y to refer to animals 0-6 months of age, J for animals 6-18 months of age and A for animals older than 18 months. For survival it makes sense to think about the age of the animal at the beginning of the year.  However, if an abundance survey was flown in December then it makes sense that ageclass Y cannot be observed if the animals were born in June.
+- Parameter
+    + This column tells the software which quantity was estimated.  The possible entries include Abundance, Survival, YFratio (for age ratio estimates), MFratio (for sex ratio estimates), Harvest and a few others.  If you have questions about this column because you have a unique data types please email Josh at the address at the end of this document.
+- Mean
+    + This column holds the point estimates of parameters.  The mean is numeric and for quantites larger than 3 no decimal places are needed, but for smaller quantities please round estimates to 2 decimal places.
+- SE
+    + Standard error of the mean estimate.  Include the uncertainty of estimates in this column.  Use 2 decimal places to represent the value.  In most cases if a standard error is not included the estimate will be ignored.
+    
+
+## Questions?
+
+Please post questions to your Issue tracker.  You can find help using the Issue Tracker at this link.
+
+### Josh Nowak & Paul Lukacs 
+<img src = "C:/Users/josh.nowak/Google Drive/Speedgoat/Bison_AZ/SG_Horizontal_Transparent_RGB.png"
+  height = "22" width = "162">
+
+<br>
+
+***
+
+Emails:
+
+<a href="mailto:josh.nowak@speedgoat.io?Subject=PopR%20again" target="_top">josh.nowak@speedgoat.io</a> 
+
+<a href="mailto:paul.lukacs@speedgoat.io?Subject=PopR%20again" target="_top">paul.lukacs@speedgoat.io</a> 
+  
+GitHub handles: 
+
+Josh: [Huh](https://github.com/Huh)
+
+Paul: [Paul-Lukacs](https://github.com/paul-lukacs)
+
+<br>
+
+<img src = "C:\Users\josh.nowak\Google Drive\Logo\PopR_QRcode2.png" 
+  height = "120" width = "120">
+
+<div style="padding-bottom:100px"></div>
