@@ -1,0 +1,4 @@
+Year,Species,DAU,Sex,Age,Parameter,Mean,SE
+1999,Mule Deer,Black Ridge,NA,NA,Abundance,600.00,99.00
+1999,Mule Deer,Black Ridge,F,A,Survival,0.85,0.05
+2000,Elk,Town,NA,NA,YFratio,0.41,0.09
